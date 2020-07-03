@@ -11,6 +11,8 @@ void write_to_file(char* a_file, char* header_string) {
 }
 
 int main(int argc, const char* argv[]) {
+	const char* quote = "\"";
+
 	char* file;
 	int opt;
 	int py_flag, c_flag;
@@ -34,18 +36,17 @@ int main(int argc, const char* argv[]) {
 				file = optarg;
 				break;
 			default:
-				printf("default");
+				printf("\tdefault");
 				break;
 		}
 	}
 
 	// if py flag is set
 	if (py_flag == 1) {
-		const char* py_header = 
-			"def main()\n"
-			"\tprint("Hello World")\n"
-			"if __name__ == "__main__":\n"
-			"\tmain()\n"
+		const char* py_header = "def main()\n" \
+								"    print(\"Hello World\")\n\n" \
+								"if __name__ == \"__main__\":\n" \
+								"    main()\n";
 		write_to_file(file, py_header);
 	}
 
